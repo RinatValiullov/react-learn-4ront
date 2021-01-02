@@ -17,12 +17,7 @@ export default class Ticker extends Component {
         <p>{pair.toUpperCase().replace("_", " to ")}</p>
         <p>
           {data.map((res) => {
-            if (
-              res.symbol === pair.substr(0, 3) ||
-              res.symbol === pair.substr(0, 4) ||
-              res.symbol === pair.substr(0, 5) ||
-              res.symbol === pair.substr(0, 6)
-            ) {
+            if (pair.includes(res.symbol)) {
               return res.quote.USD.price.toFixed(2);
             }
           })}
