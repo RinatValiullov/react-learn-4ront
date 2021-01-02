@@ -5,7 +5,7 @@ import Ticker from "./Ticker/Ticker";
 
 class App extends Component {
   state = {
-    selectedPairs: [],
+    selectedPairs: ["BTC_USD"],
   };
 
   handleCheckBox = (currency) => (event) => {
