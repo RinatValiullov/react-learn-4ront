@@ -19,7 +19,7 @@ aside {
 }
 
 section.tickers {
-  align-content: start;
+  align-content: flex-start;
   display: flex;
   flex-wrap: wrap;
   flex-basis: 70%;
