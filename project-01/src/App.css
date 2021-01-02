@@ -17,3 +17,10 @@ input[type="checkbox"] {
 aside {
   flex-basis: 30%;
 }
+
+section.tickers {
+  align-content: start;
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 70%;
+}

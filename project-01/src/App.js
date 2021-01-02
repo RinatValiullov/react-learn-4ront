@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import currencies from "./currencies";
+import Ticker from "./Ticker/Ticker";
 
 class App extends Component {
   state = {
@@ -42,6 +43,11 @@ class App extends Component {
             ))}
           </ul>
         </aside>
+        <section className="tickers">
+          {this.state.selectedPairs.map((pair) => (
+            <Ticker key={pair} pair={pair} />
+          ))}
+        </section>
       </div>
     );
   }

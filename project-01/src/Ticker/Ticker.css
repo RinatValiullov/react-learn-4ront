@@ -1,0 +1,15 @@
+p {
+  margin: 0;
+}
+
+.ticker {
+  align-items: center;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: center;
+  margin: 5px 10px;
+  width: 150px;
+}
