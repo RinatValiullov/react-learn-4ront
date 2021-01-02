@@ -1,18 +1,15 @@
 .App {
-  height: 100%;
-  min-height: 400px;
-  text-align: center;
   display: flex;
-  flex-direction: column;
-  justify-content: stretch;
 }
 
 .currItem {
   background: #aaa;
   border-bottom: 1px solid #999;
+  display: flex;
+  align-items: center;
   padding: 10px 0;
 }
 
 aside {
-  width: 30%;
+  flex-basis: 30%;
 }

@@ -5,12 +5,13 @@ import currencies from "./currencies";
 class App extends Component {
   render() {
     return (
-      <div className="app">
+      <div className="App">
         <aside>
           <ul className="currList">
             {currencies.map((curr) => (
               <li key={curr} className="currItem">
-                {curr}
+                <input type="checkbox" id={curr} />
+                <label htmlFor={curr}>{curr}</label>
               </li>
             ))}
           </ul>
