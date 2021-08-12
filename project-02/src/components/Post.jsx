@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Post extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="post">
-          <div className="post__content">
-            <strong>Javascript</strong>
-            <div>
-              JavaScript is programming language
-            </div>
-          </div>
-          <div className="post__btn">
-            <button>Delete</button>
+const Post = ({post}) => {
+  return (
+    <div className="App">
+      <div className="post">
+        <div className="post__content">
+          <strong>{post.id} {post.title}</strong>
+          <div>
+            {post.body}
           </div>
         </div>
+        <div className="post__btn">
+          <button>Delete</button>
+        </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+export default Post
