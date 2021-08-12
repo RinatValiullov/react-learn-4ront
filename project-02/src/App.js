@@ -1,12 +1,13 @@
 import React from "react";
-import ClassCounter from "./components/ClassCounter";
-import Counter from "./components/Counter";
+import Post from "./components/Post";
+import "./styles/App.css";
 
 function App() {
   return (
     <div className="App">
-      <Counter />
-      <ClassCounter />
+      <Post />
+      <Post />
+      <Post />
     </div>
   );
 }

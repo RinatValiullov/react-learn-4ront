@@ -1,0 +1,31 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.post {
+  align-items: center;
+  border: 2px solid #556;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 15px;
+}
+
+.App {
+  width: 800px;
+}
