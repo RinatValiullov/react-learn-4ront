@@ -7,8 +7,8 @@ export default function PostList({posts, title}) {
       <h1 style={{ textAlign: "center" }}>
         {title}
       </h1>
-      {posts.map((post) => (
-        <Post post={post} key={post.id} />
+      {posts.map((post, index) => (
+        <Post number={index + 1} post={post} key={post.id} />
       ))}
     </div>
   )
