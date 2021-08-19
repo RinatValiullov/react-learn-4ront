@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 // import Post from "./components/Post";
 import PostList from "./components/PostList";
 import Button from "./components/UI/button/Button";
@@ -15,9 +15,11 @@ const App = () => {
   ]);
 
   const [title, setTitle] = useState("");
+  const bodyInpRef = useRef();
   const addNewPost = (evt) => {
     evt.preventDefault();
     console.log(title);
+    console.log(bodyInpRef.current.value);
   };
 
   return (
@@ -29,7 +31,7 @@ const App = () => {
           type="text"
           placeholder="Name of post"
         />
-        <Input type="text" placeholder="Description of post" />
+        <Input ref={bodyInpRef} type="text" placeholder="Description of post" />
         <Button onClick={addNewPost}>Create post</Button>
       </form>
       <PostList posts={posts} title="Список постов 1" />
