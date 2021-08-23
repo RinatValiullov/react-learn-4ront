@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-// import Post from "./components/Post";
+import { PostForm } from "./components/PostForm";
 import PostList from "./components/PostList";
-import Button from "./components/UI/button/Button";
-import Input from "./components/UI/input/Input";
+// import Button from "./components/UI/button/Button";
+// import Input from "./components/UI/input/Input";
 import "./styles/App.css";
 
 const App = () => {
@@ -14,31 +14,13 @@ const App = () => {
     { id: 5, title: "Kotlin", body: "My new post" }
   ]);
 
-  const [post, setPost] = useState({ title: "", body: "" });
-
-  const addNewPost = (evt) => {
-    evt.preventDefault();
-    setPosts([...posts, { ...post, id: Date.now() }]);
-    setPost({ title: "", body: "" });
+  const createPost = (newPost) => {
+    setPosts([...posts, newPost]);
   };
 
   return (
     <div className="App">
-      <form>
-        <Input
-          value={post.title}
-          onChange={(evt) => setPost({ ...post, title: evt.target.value })}
-          type="text"
-          placeholder="Name of post"
-        />
-        <Input
-          value={post.body}
-          onChange={(evt) => setPost({ ...post, body: evt.target.value })}
-          type="text"
-          placeholder="Description of post"
-        />
-        <Button onClick={addNewPost}>Create post</Button>
-      </form>
+      <PostForm create={createPost} />
       <PostList posts={posts} title="Список постов 1" />
     </div>
   );
