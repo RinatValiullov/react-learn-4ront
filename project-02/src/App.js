@@ -14,33 +14,26 @@ const App = () => {
     { id: 5, title: "Kotlin", body: "My new post" }
   ]);
 
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [post, setPost] = useState({ title: "", body: "" });
 
   const addNewPost = (evt) => {
     evt.preventDefault();
-    const newPost = {
-      id: Date.now(),
-      title,
-      body
-    };
-    setPosts([...posts, newPost]);
-    setTitle("");
-    setBody("");
+    setPosts([...posts, { ...post, id: Date.now() }]);
+    setPost({ title: "", body: "" });
   };
 
   return (
     <div className="App">
       <form>
         <Input
-          value={title}
-          onChange={(evt) => setTitle(evt.target.value)}
+          value={post.title}
+          onChange={(evt) => setPost({ ...post, title: evt.target.value })}
           type="text"
           placeholder="Name of post"
         />
         <Input
-          value={body}
-          onChange={(evt) => setBody(evt.target.value)}
+          value={post.body}
+          onChange={(evt) => setPost({ ...post, body: evt.target.value })}
           type="text"
           placeholder="Description of post"
         />
