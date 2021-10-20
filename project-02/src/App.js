@@ -1,10 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { PostForm } from "./components/PostForm";
-import PostList from "./components/PostList";
+import { PostList } from "./components/PostList";
+import { PostFilter } from "./components/PostFilter";
 // import Button from "./components/UI/button/Button";
 import "./styles/App.css";
-import Input from "./components/UI/input/Input";
-import MySelect from "./components/UI/select/MySelect";
 
 const App = () => {
   const [posts, setPosts] = useState([
@@ -15,24 +14,25 @@ const App = () => {
     { id: 5, title: "Kotlin", body: "Backend" }
   ]);
 
-  const [selectedSort, setSelectedSort] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [filter, setFilter] = useState({ sort: "", query: "" });
+
+  // const [selectedSort, setSelectedSort] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
 
   const sortedPosts = useMemo(() => {
-    console.log("Function works");
-    if (selectedSort) {
+    if (filter.sort) {
       return [...posts].sort((a, b) =>
-        a[selectedSort].localeCompare(b[selectedSort])
+        a[filter.sort].localeCompare(b[filter.sort])
       );
     }
     return posts;
-  }, [selectedSort, posts]);
+  }, [filter.sort, posts]);
 
   const sortedAndSearchedPostst = useMemo(() => {
     return sortedPosts.filter((post) =>
-      post.title.toLowerCase().includes(searchQuery)
+      post.title.toLowerCase().includes(filter.query)
     );
-  }, [searchQuery, sortedPosts]);
+  }, [filter.query, sortedPosts]);
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
@@ -42,30 +42,15 @@ const App = () => {
     setPosts(posts.filter((p) => p.id !== post.id));
   };
 
-  const sortPosts = (sort) => {
-    setSelectedSort(sort);
-  };
+  // const sortPosts = (sort) => {
+  //   setSelectedSort(sort);
+  // };
 
   return (
     <div className="App">
       <PostForm create={createPost} />
       <hr style={{ margin: "15px 0" }} />
-      <div>
-        <Input
-          placeholder="Search"
-          value={searchQuery}
-          onChange={(event) => setSearchQuery(event.target.value)}
-        />
-        <MySelect
-          value={selectedSort}
-          onChange={sortPosts}
-          defaultOption="Сортировка"
-          options={[
-            { value: "title", name: "По названию" },
-            { value: "body", name: "По описанию" }
-          ]}
-        />
-      </div>
+      <PostFilter filter={filter} setFilter={setFilter} />
       {sortedAndSearchedPostst.length !== 0 ? (
         <PostList
           remove={removePost}

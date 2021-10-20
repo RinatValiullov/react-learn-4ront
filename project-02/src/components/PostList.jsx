@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from './Post';
 
-export default function PostList({posts, title, remove}) {
+const PostList = ({ posts, title, remove }) => {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>
@@ -13,3 +13,5 @@ export default function PostList({posts, title, remove}) {
     </div>
   )
 }
+
+export { PostList };
