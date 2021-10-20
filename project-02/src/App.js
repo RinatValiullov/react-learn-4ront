@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { PostForm } from "./components/PostForm";
 import PostList from "./components/PostList";
 // import Button from "./components/UI/button/Button";
@@ -18,7 +18,7 @@ const App = () => {
   const [selectedSort, setSelectedSort] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const getSortedPosts = () => {
+  const sortedPosts = useMemo(() => {
     console.log("Function works");
     if (selectedSort) {
       return [...posts].sort((a, b) =>
@@ -26,9 +26,13 @@ const App = () => {
       );
     }
     return posts;
-  };
+  }, [selectedSort, posts]);
 
-  const sortedPosts = getSortedPosts();
+  const sortedAndSearchedPostst = useMemo(() => {
+    return sortedPosts.filter((post) =>
+      post.title.toLowerCase().includes(searchQuery)
+    );
+  }, [searchQuery, sortedPosts]);
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
@@ -62,10 +66,10 @@ const App = () => {
           ]}
         />
       </div>
-      {posts.length !== 0 ? (
+      {sortedAndSearchedPostst.length !== 0 ? (
         <PostList
           remove={removePost}
-          posts={sortedPosts}
+          posts={sortedAndSearchedPostst}
           title="Список постов 1"
         />
       ) : (
