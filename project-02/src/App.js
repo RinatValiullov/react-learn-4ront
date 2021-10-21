@@ -2,7 +2,8 @@ import React, { useMemo, useState } from "react";
 import { PostForm } from "./components/PostForm";
 import { PostList } from "./components/PostList";
 import { PostFilter } from "./components/PostFilter";
-// import Button from "./components/UI/button/Button";
+import { Button } from "./components/UI/button/Button";
+import { Modal } from "./components/UI/modal/Modal";
 import "./styles/App.css";
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
   ]);
 
   const [filter, setFilter] = useState({ sort: "", query: "" });
+  const [modal, setModal] = useState(false);
 
   const sortedPosts = useMemo(() => {
     if (filter.sort) {
@@ -33,6 +35,7 @@ const App = () => {
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
+    setModal(false);
   };
 
   const removePost = (post) => {
@@ -41,13 +44,18 @@ const App = () => {
 
   return (
     <div className="App">
-      <PostForm create={createPost} />
+      <Button style={{ marginTop: "30px" }} onClick={() => setModal(true)}>
+        Создать пользователя
+      </Button>
+      <Modal visible={modal} setVisible={setModal}>
+        <PostForm create={createPost} />
+      </Modal>
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
       <PostList
         remove={removePost}
         posts={sortedAndSearchedPostst}
-        title="Список постов 1"
+        title="Список постов"
       />
     </div>
   );
