@@ -1,6 +1,17 @@
 .loader {
+  animation: load 1s linear infinite;
   border: 3px dashed green;
   border-radius: 50%;
   height: 100px;
   width: 100px;
+}
+
+@keyframes load {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+
+  to {
+    transform: rotate(360deg) scale(1.4);
+  }
 }

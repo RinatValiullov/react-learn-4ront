@@ -7,7 +7,7 @@ import { Modal } from "./components/UI/modal/Modal";
 import "./styles/App.css";
 import { usePosts } from "./hooks/usePosts";
 import { PostService } from "./API/PostService";
-import { Loader } from "./components/UI/Loader/Loader";
+import { Loader } from "./components/UI/loader/Loader";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -48,7 +48,15 @@ const App = () => {
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
       {isPostsLoading ? (
-        <Loader />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "50px"
+          }}
+        >
+          <Loader />
+        </div>
       ) : (
         <PostList
           remove={removePost}
