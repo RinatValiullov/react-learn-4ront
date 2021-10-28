@@ -6,20 +6,16 @@ import { Button } from "./components/UI/button/Button";
 import { Modal } from "./components/UI/modal/Modal";
 import "./styles/App.css";
 import { usePosts } from "./hooks/usePosts";
-import axios from "axios";
+import { PostService } from "./API/PostService";
+import { Loader } from "./components/UI/Loader/Loader";
 
 const App = () => {
-  const [posts, setPosts] = useState([
-    { id: 1, title: "Javascript", body: "Frontend" },
-    { id: 2, title: "PHP", body: "Backend" },
-    { id: 3, title: "Python", body: "Data Science" },
-    { id: 4, title: "Haskell", body: "Functional programming" },
-    { id: 5, title: "Kotlin", body: "Backend" }
-  ]);
+  const [posts, setPosts] = useState([]);
 
   const [filter, setFilter] = useState({ sort: "", query: "" });
   const [modal, setModal] = useState(false);
   const sortedAndSearchedPostst = usePosts(posts, filter.sort, filter.query);
+  const [isPostsLoading, setIsPostsLoading] = useState(false);
 
   useEffect(() => {
     fetchPosts();
@@ -31,10 +27,10 @@ const App = () => {
   };
 
   const fetchPosts = async () => {
-    const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-    setPosts(response.data);
+    setIsPostsLoading(true);
+    const posts = await PostService.getAll();
+    setPosts(posts);
+    setIsPostsLoading(false);
   };
 
   const removePost = (post) => {
@@ -51,11 +47,15 @@ const App = () => {
       </Modal>
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
-      <PostList
-        remove={removePost}
-        posts={sortedAndSearchedPostst}
-        title="Список постов"
-      />
+      {isPostsLoading ? (
+        <Loader />
+      ) : (
+        <PostList
+          remove={removePost}
+          posts={sortedAndSearchedPostst}
+          title="Список постов"
+        />
+      )}
     </div>
   );
 };
