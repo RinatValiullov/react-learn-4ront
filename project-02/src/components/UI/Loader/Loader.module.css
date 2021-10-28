@@ -1,5 +1,5 @@
 .loader {
-  animation: load 1s linear infinite;
+  animation: load 1.2s linear infinite;
   border: 3px dashed green;
   border-radius: 50%;
   height: 100px;
