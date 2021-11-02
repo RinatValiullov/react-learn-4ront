@@ -50,7 +50,6 @@ body {
 
 .page__wrapper {
   display: flex;
-  justify-content: space-around;
   margin-top: 30px;
 }
 
@@ -58,6 +57,10 @@ body {
   border: 1px solid #456;
   cursor: pointer;
   padding: 10px;
+}
+
+.page:not(:last-of-type) {
+  margin-right: 10px;
 }
 
 .page__current {
