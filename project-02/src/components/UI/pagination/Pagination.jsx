@@ -1,7 +1,7 @@
 import React from 'react';
 import { getPagesArray } from './../../../utils/pages';
 
-export const Pagination = ({ totalPages, page, changePage }) => {
+const Pagination = ({ totalPages, page, changePage }) => {
   const pagesArray = getPagesArray(totalPages);
 
   return (
@@ -20,3 +20,5 @@ export const Pagination = ({ totalPages, page, changePage }) => {
     </div>
   );
 };
+
+export { Pagination };
