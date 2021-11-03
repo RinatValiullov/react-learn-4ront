@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { PostForm } from "./components/PostForm";
-import { PostList } from "./components/PostList";
-import { PostFilter } from "./components/PostFilter";
-import { Button } from "./components/UI/button/Button";
-import { Modal } from "./components/UI/modal/Modal";
-import "./styles/App.css";
-import { usePosts } from "./hooks/usePosts";
-import { useFetching } from "./hooks/useFetching";
-import { PostService } from "./API/PostService";
-import { Loader } from "./components/UI/loader/Loader";
-import { getPageCount, getPagesArray } from "./utils/pages";
-import { Pagination } from "./components/UI/pagination/Pagination";
+import React, { useEffect, useState } from "react";
+import { PostService } from "./../API/PostService";
+import { PostFilter } from "./../components/PostFilter";
+import { PostForm } from "./../components/PostForm";
+import { PostList } from "./../components/PostList";
+import { Button } from "./../components/UI/button/Button";
+import { Loader } from "./../components/UI/loader/Loader";
+import { Modal } from "./../components/UI/modal/Modal";
+import { Pagination } from "./../components/UI/pagination/Pagination";
+import { useFetching } from "./../hooks/useFetching";
+import { usePosts } from "./../hooks/usePosts";
+import "./../styles/App.css";
+import { getPageCount } from "./../utils/pages";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -82,4 +82,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export { Posts };

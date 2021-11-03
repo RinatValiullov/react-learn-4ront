@@ -14,7 +14,8 @@ body {
 
 #root {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .post {
@@ -70,4 +71,21 @@ body {
 .page__current {
   border: 2px solid yellow;
   font-weight: 900;
+}
+
+.navbar {
+  align-items: center;
+  background-color: aqua;
+  display: flex;
+  height: 50px;
+  padding: 0 15px;
+  width: 100vw;
+}
+
+.navbar__links {
+  margin-left: auto;
+}
+
+.navbar__links a:not(:last-of-type) {
+  margin-right: 15px;
 }
