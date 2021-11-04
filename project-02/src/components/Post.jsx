@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button } from './UI/button/Button';
+import { useHistory } from 'react-router-dom';
 
 const Post = ({ post, number, remove }) => {
+  const router = useHistory();
   return (
     <div className="App">
       <div className="post">
@@ -12,6 +14,7 @@ const Post = ({ post, number, remove }) => {
           </div>
         </div>
         <div className="post__btn">
+          <Button onClick={() => router.push(`/posts/${post.id}`)}>Open</Button>
           <Button onClick={() => remove(post)}>Delete</Button>
         </div>
       </div>

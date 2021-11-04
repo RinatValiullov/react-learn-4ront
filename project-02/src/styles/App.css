@@ -53,6 +53,10 @@ body {
   margin: 0 10px;
 }
 
+.post__btn {
+  display: flex;
+}
+
 .page__wrapper {
   display: flex;
   margin-top: 30px;
