@@ -1,12 +1,21 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import { routes } from './../router';
+import { privateRoutes, publicRoutes } from './../router';
 
 const AppRouter = () => {
   return (
     <Switch>
       {
-        routes.map(route => {
+        privateRoutes.map(route => {
+          return <Route
+            component={route.component}
+            path={route.path}
+            exact={route.exact}
+          />;
+        })
+      }
+      {
+        publicRoutes.map(route => {
           return <Route
             component={route.component}
             path={route.path}
