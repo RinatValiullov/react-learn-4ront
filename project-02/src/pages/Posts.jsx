@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { PostService } from "./../API/PostService";
 import { PostFilter } from "./../components/PostFilter";
 import { PostForm } from "./../components/PostForm";
@@ -21,19 +21,38 @@ const Posts = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
+  const lastElement = useRef();
+  const observer = useRef();
+  console.log(lastElement);
 
   const [fetchPosts, isPostsLoading, postError] = useFetching(
     async (limit, page) => {
       const response = await PostService.getAll(limit, page);
-      setPosts(response.data);
+      setPosts([...posts, ...response.data]);
       const totalCount = response.headers["x-total-count"];
       setTotalPages(getPageCount(totalCount, limit));
     }
   );
 
   useEffect(() => {
+    if (isPostsLoading) return;
+    if (observer.current) observer.current.disconnect();
+    const options = {
+      root: document
+    };
+    const callback = function (entries, observer) {
+      if (entries[0].isIntersecting && page < totalPages) {
+        console.log(page);
+        setPage(page + 1);
+      }
+    };
+    observer.current = new IntersectionObserver(callback, options);
+    observer.current.observe(lastElement.current);
+  }, [isPostsLoading]);
+
+  useEffect(() => {
     fetchPosts(limit, page);
-  }, []);
+  }, [page]);
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
@@ -46,7 +65,6 @@ const Posts = () => {
 
   const changePage = (page) => {
     setPage(page);
-    fetchPosts(limit, page);
   };
 
   return (
@@ -59,8 +77,16 @@ const Posts = () => {
       </Modal>
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
-      {postError && <h1>Error ${postError}</h1>}
-      {isPostsLoading ? (
+      {postError &&
+        <h1>Error ${postError}</h1>
+      }
+      <PostList
+        remove={removePost}
+        posts={sortedAndSearchedPostst}
+        title="Список постов"
+      />
+      <div ref={lastElement} style={{ height: 30, background: 'green' }} />
+      {isPostsLoading &&
         <div
           style={{
             display: "flex",
@@ -70,13 +96,8 @@ const Posts = () => {
         >
           <Loader />
         </div>
-      ) : (
-        <PostList
-          remove={removePost}
-          posts={sortedAndSearchedPostst}
-          title="Список постов"
-        />
-      )}
+      }
+
       <Pagination page={page} changePage={changePage} totalPages={totalPages} />
     </div>
   );
