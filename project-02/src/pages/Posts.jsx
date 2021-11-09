@@ -12,6 +12,7 @@ import { usePosts } from "./../hooks/usePosts";
 import "./../styles/App.css";
 import { getPageCount } from "./../utils/pages";
 import { useObserver } from './../hooks/useObserver';
+import { MySelect } from './../components/UI/select/MySelect';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -39,7 +40,7 @@ const Posts = () => {
 
   useEffect(() => {
     fetchPosts(limit, page);
-  }, [page]);
+  }, [page, limit]);
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
@@ -64,6 +65,17 @@ const Posts = () => {
       </Modal>
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
+      <MySelect
+        value={limit}
+        onChange={value => setLimit(value)}
+        defaultOption="Количество элементов"
+        options={[
+          { value: 5, name: '5' },
+          { value: 10, name: '10' },
+          { value: 15, name: '15' },
+          { value: -1, name: 'Все посты' },
+        ]}
+      />
       {postError &&
         <h1>Error ${postError}</h1>
       }
