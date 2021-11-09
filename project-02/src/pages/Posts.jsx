@@ -11,6 +11,7 @@ import { useFetching } from "./../hooks/useFetching";
 import { usePosts } from "./../hooks/usePosts";
 import "./../styles/App.css";
 import { getPageCount } from "./../utils/pages";
+import { useObserver } from './../hooks/useObserver';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -22,8 +23,6 @@ const Posts = () => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const lastElement = useRef();
-  const observer = useRef();
-  console.log(lastElement);
 
   const [fetchPosts, isPostsLoading, postError] = useFetching(
     async (limit, page) => {
@@ -34,21 +33,9 @@ const Posts = () => {
     }
   );
 
-  useEffect(() => {
-    if (isPostsLoading) return;
-    if (observer.current) observer.current.disconnect();
-    const options = {
-      root: document
-    };
-    const callback = function (entries, observer) {
-      if (entries[0].isIntersecting && page < totalPages) {
-        console.log(page);
-        setPage(page + 1);
-      }
-    };
-    observer.current = new IntersectionObserver(callback, options);
-    observer.current.observe(lastElement.current);
-  }, [isPostsLoading]);
+  useObserver(lastElement, page < totalPages, isPostsLoading, () => {
+    setPage(page + 1);
+  });
 
   useEffect(() => {
     fetchPosts(limit, page);
