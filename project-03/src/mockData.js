@@ -8,5 +8,10 @@ export const ghUsers = [
     name: "Kyle Simpson",
     avatar_url: "https://avatars.githubusercontent.com/u/150330?v=4",
     bio: "I like to explore JS and FP techniques. Helping build a culture of engineering excellence for my employer."
+  },
+  {
+    name: "Artem Kobzar",
+    avatar_url: "https://avatars.githubusercontent.com/u/10776615?v=4",
+    bio: null
   }
 ];

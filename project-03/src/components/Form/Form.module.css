@@ -1,0 +1,19 @@
+.form {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  font-size: 1.2rem;
+  margin: 30px;
+  max-width: 400px;
+  padding: 30px;
+}
+
+.form input,
+.form button {
+  border: inherit;
+  font-size: inherit;
+}
+
+.form input {
+  padding: 5px;
+}

@@ -6,8 +6,9 @@ class CardList extends Component {
   render() {
     return (
       <div>
-        <Card {...ghUsers[0]} />
-        <Card {...ghUsers[1]} />
+        {ghUsers.map((profile) => (
+          <Card {...profile} />
+        ))}
       </div>
     );
   }
