@@ -1,8 +1,10 @@
 .githubProfile {
   display: flex;
+  font-size: 75%;
   margin: 15px;
 }
 
 img {
   margin-inline-end: 1rem;
+  width: 250px;
 }
