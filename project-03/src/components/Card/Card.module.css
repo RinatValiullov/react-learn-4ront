@@ -1,0 +1,8 @@
+.githubProfile {
+  display: flex;
+  margin: 15px;
+}
+
+img {
+  margin-inline-end: 1rem;
+}
