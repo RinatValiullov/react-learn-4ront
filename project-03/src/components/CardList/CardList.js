@@ -6,7 +6,7 @@ class CardList extends Component {
     return (
       <div>
         {this.props.profiles.map((profile) => (
-          <Card {...profile} />
+          <Card key={profile.id} {...profile} />
         ))}
       </div>
     );
