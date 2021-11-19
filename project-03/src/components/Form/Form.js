@@ -16,6 +16,10 @@ class Form extends Component {
     this.setState({ userName: "" });
   };
 
+  handleChange = (event) => {
+    this.setState({ userName: event.target.value });
+  };
+
   render() {
     return (
       <form onSubmit={this.handleSubmit} className={classes.form}>
@@ -23,7 +27,7 @@ class Form extends Component {
           type="text"
           placeholder="Github username"
           value={this.state.userName}
-          onChange={(event) => this.setState({ userName: event.target.value })}
+          onChange={this.handleChange}
           required
         />
         <button>Add card</button>
