@@ -7,5 +7,6 @@
 
 img {
   margin-inline-end: 1rem;
-  width: 250px;
+  max-width: 250px;
+  width: 100%;
 }
