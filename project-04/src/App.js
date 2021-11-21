@@ -1,7 +1,12 @@
 import "./App.css";
+import { StarsMatch } from "./components/StarsMatch/StarsMatch";
 
-function App() {
-  return <div>Hello!</div>;
-}
+const App = () => {
+  return (
+    <div className="App">
+      <StarsMatch />
+    </div>
+  );
+};
 
 export default App;
