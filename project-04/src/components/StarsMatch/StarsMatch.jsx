@@ -2,20 +2,17 @@ import React, { useState } from 'react';
 import classes from './StarsMatch.module.css';
 import { utils } from './../../utils/utils';
 import { NumberButton } from '../NumberButton/NumberButton';
+import { StarsDisplay } from '../StarsDisplay/StarsDisplay';
 
 const StarsMatch = (props) => {
-  const numberOfStars = utils.random(1, 9);
-  const [stars, setStars] = useState(numberOfStars);
+  // const numberOfStars = utils.random(1, 9);
+  const [stars, setStars] = useState(utils.random(1, 9));
   return (
     <div className={classes.game}>
       <h3 className={classes.title}>Pick 1 or more numbers that sum to the number of stars</h3>
       <div className={classes.board}>
         <div className={classes.stars}>
-          {
-            utils.range(1, stars).map(star => {
-              return <div key={star} className={classes.star} />;
-            })
-          }
+          <StarsDisplay count={stars} />
         </div>
         <div className={classes.buttons}>
           {
