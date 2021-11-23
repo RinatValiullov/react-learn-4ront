@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classes from './StarsMatch.module.css';
 import { utils } from './../../utils/utils';
+import { NumberButton } from '../NumberButton/NumberButton';
 
 const StarsMatch = (props) => {
   const numberOfStars = utils.random(1, 9);
@@ -19,7 +20,7 @@ const StarsMatch = (props) => {
         <div className={classes.buttons}>
           {
             utils.range(1, 9).map(number => {
-              return <button key={number} className={classes.number}>{number}</button>;
+              return <NumberButton key={number} number={number} />;
             })
           }
         </div>

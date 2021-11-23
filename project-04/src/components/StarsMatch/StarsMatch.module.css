@@ -29,15 +29,6 @@
   font-size: 46px;
 }
 
-.number {
-  background-color: #eee;
-  border: 1px solid #ddd;
-  font-size: 25px;
-  height: 45px;
-  margin: 10px;
-  width: 45px;
-}
-
 .timer {
   margin: 5px 0;
 }
