@@ -2,4 +2,48 @@
   max-width: 500px;
 }
 
-.title {}
+.title,
+.timer {
+  color: #888;
+}
+
+.board {
+  display: flex;
+}
+
+.stars,
+.buttons {
+  border: 1px solid #777;
+  padding: 15px;
+  text-align: center;
+  width: 50%;
+}
+
+.star {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.star::after {
+  content: "\2605";
+  font-size: 46px;
+}
+
+.number {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  font-size: 25px;
+  height: 45px;
+  margin: 10px;
+  width: 45px;
+}
+
+.timer {
+  margin: 5px 0;
+}
+
+.game-done .message {
+  font-size: 250%;
+  font-weight: bold;
+  margin: 15px;
+}

@@ -1,4 +1,4 @@
-export const utils = {
+const utils = {
   sum: (array) => array.reduce((acc, curr) => acc + curr, 0),
 
   range: (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i),
@@ -23,3 +23,5 @@ export const utils = {
     return sums[utils.random(0, sums.length - 1)];
   }
 };
+
+export { utils };
