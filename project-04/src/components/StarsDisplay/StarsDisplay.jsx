@@ -14,5 +14,4 @@ const StarsDisplay = ({ count }) => {
   );
 };
 
-
 export { StarsDisplay };

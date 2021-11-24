@@ -1,6 +1,8 @@
-export const colors = {
-  available: "lightgray",
-  used: "lightgreen",
-  wrong: "lightcoral",
-  candidate: "deepskyblue"
+const colors = {
+  available: "gray",
+  used: "green",
+  wrong: "maroon",
+  candidate: "blue"
 };
+
+export { colors };
