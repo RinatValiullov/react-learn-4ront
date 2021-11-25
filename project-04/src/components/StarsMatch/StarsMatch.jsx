@@ -22,6 +22,29 @@ const StarsMatch = (props) => {
     return 'available';
   };
 
+  const handleNumberClick = (number, currentStatus) => {
+    if (currentStatus === 'used') {
+      return;
+    }
+    const newCandidateNums =
+      currentStatus === 'available'
+        ? candidateNums.concat(number)
+        : candidateNums.filter(candNum => candNum !== number);
+
+    if (utils.sum(newCandidateNums) !== stars) {
+      setCandidateNums(newCandidateNums);
+    } else {
+      const newAvailableNums = availableNums.filter(
+        n => !newCandidateNums.includes(n)
+      );
+      setStars(utils.randomSumIn(newAvailableNums, 9));
+
+      setAvailableNums(newAvailableNums);
+
+      setCandidateNums([]);
+    }
+  };
+
   return (
     <div className={classes.game}>
       <h3 className={classes.title}>Pick 1 or more numbers that sum to the number of stars</h3>
@@ -36,6 +59,7 @@ const StarsMatch = (props) => {
                 key={number}
                 number={number}
                 status={numberStatus(number)}
+                onClick={handleNumberClick}
               />;
             })
           }
