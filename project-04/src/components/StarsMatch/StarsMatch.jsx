@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './StarsMatch.module.css';
 import { utils } from './../../utils/utils';
 import { NumberButton } from '../NumberButton/NumberButton';
@@ -10,9 +10,22 @@ const StarsMatch = (props) => {
   const [stars, setStars] = useState(numberOfStars);
   const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
   const [candidateNums, setCandidateNums] = useState([]);
+  const [secondsLeft, setSecondsLeft] = useState(10);
+
+  useEffect(() => {
+    if (secondsLeft > 0 && availableNums.length > 0) {
+      const timerId = setTimeout(() => {
+        setSecondsLeft(prev => --prev);
+      }, 1000);
+      return () => clearTimeout(timerId);
+    }
+  });
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
-  const gameIsDone = availableNums.length === 0;
+
+  const gameStatus = availableNums.length === 0
+    ? 'won'
+    : secondsLeft === 0 ? 'lost' : 'active';
 
   const resetGame = () => {
     setStars(numberOfStars);
@@ -31,7 +44,7 @@ const StarsMatch = (props) => {
   };
 
   const handleNumberClick = (number, currentStatus) => {
-    if (currentStatus === 'used') {
+    if (gameStatus !== 'active' || currentStatus === 'used') {
       return;
     }
     const newCandidateNums =
@@ -59,8 +72,8 @@ const StarsMatch = (props) => {
       <div className={classes.board}>
         <div className={classes.stars}>
           {
-            gameIsDone ? (
-              <PlayAgain handleClick={resetGame} />
+            gameStatus !== 'active' ? (
+              <PlayAgain handleClick={resetGame} gameStatus={gameStatus} />
             ) : (
               <StarsDisplay count={stars} />
             )
@@ -79,7 +92,7 @@ const StarsMatch = (props) => {
           }
         </div>
       </div>
-      <div className={classes.timer}>Time remaining: 10</div>
+      <div className={classes.timer}>Time remaining: {secondsLeft}</div>
     </div>
   );
 };
