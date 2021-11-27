@@ -3,6 +3,7 @@ import classes from './StarsMatch.module.css';
 import { utils } from './../../utils/utils';
 import { NumberButton } from '../NumberButton/NumberButton';
 import { StarsDisplay } from '../StarsDisplay/StarsDisplay';
+import { PlayAgain } from '../PlayAgain/PlayAgain';
 
 const StarsMatch = (props) => {
   const numberOfStars = utils.random(1, 9);
@@ -11,6 +12,13 @@ const StarsMatch = (props) => {
   const [candidateNums, setCandidateNums] = useState([]);
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
+  const gameIsDone = availableNums.length === 0;
+
+  const resetGame = () => {
+    setStars(numberOfStars);
+    setAvailableNums(utils.range(1, 9));
+    setCandidateNums([]);
+  };
 
   const numberStatus = (number) => {
     if (!availableNums.includes(number)) {
@@ -50,7 +58,13 @@ const StarsMatch = (props) => {
       <h3 className={classes.title}>Pick 1 or more numbers that sum to the number of stars</h3>
       <div className={classes.board}>
         <div className={classes.stars}>
-          <StarsDisplay count={stars} />
+          {
+            gameIsDone ? (
+              <PlayAgain handleClick={resetGame} />
+            ) : (
+              <StarsDisplay count={stars} />
+            )
+          }
         </div>
         <div className={classes.buttons}>
           {
