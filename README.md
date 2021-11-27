@@ -4,7 +4,7 @@
 
 - [Cryptocurrency exchange app](project-01/)
 
-- [Common app with simple authorisation and routing](project-02/)
+- [Common app with simple authorization and routing](project-02/)
 
 - [The Github Cards app](project-03/)
 

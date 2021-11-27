@@ -1,3 +1,1 @@
-# project-01
-
-## Create simple cryptocurrency exchange app
+# Create simple cryptocurrency exchange app

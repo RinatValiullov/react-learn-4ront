@@ -1,3 +1,3 @@
-## The github cards app
+# The github cards app
 
-### Will use Class components
+## Will use Class components

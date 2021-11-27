@@ -1,3 +1,3 @@
-## The Star Match Game
+# The Star Match Game
 
-### Will use Function components
+## Will use Function components
