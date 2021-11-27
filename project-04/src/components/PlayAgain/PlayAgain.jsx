@@ -6,7 +6,7 @@ const PlayAgain = ({ handleClick, gameStatus }) => {
     <div className={classes.gameDone}>
       <div
         className={classes.message}
-        style={{ color: gameStatus === 'lost' ? 'red' : 'gren' }}
+        style={{ color: gameStatus === 'lost' ? 'red' : 'green' }}
       >
         {
           gameStatus === 'lost' ? 'Game over' : 'Winner!'
