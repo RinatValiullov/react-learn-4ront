@@ -1,10 +1,10 @@
 import "./App.css";
-import { StarsMatch } from "./components/StarsMatch/StarsMatch";
+import { StarMatch } from "./components/StarMatch/StarMatch";
 
 const App = () => {
   return (
     <div className="App">
-      <StarsMatch />
+      <StarMatch />
     </div>
   );
 };

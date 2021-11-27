@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import classes from './StarsMatch.module.css';
-import { utils } from './../../utils/utils';
+import classes from './Game.module.css';
+import { utils } from '../../utils/utils';
 import { NumberButton } from '../NumberButton/NumberButton';
 import { StarsDisplay } from '../StarsDisplay/StarsDisplay';
 import { PlayAgain } from '../PlayAgain/PlayAgain';
 
-const StarsMatch = (props) => {
+const Game = ({ startNewGame }) => {
   const numberOfStars = utils.random(1, 9);
   const [stars, setStars] = useState(numberOfStars);
   const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
@@ -26,12 +26,6 @@ const StarsMatch = (props) => {
   const gameStatus = availableNums.length === 0
     ? 'won'
     : secondsLeft === 0 ? 'lost' : 'active';
-
-  const resetGame = () => {
-    setStars(numberOfStars);
-    setAvailableNums(utils.range(1, 9));
-    setCandidateNums([]);
-  };
 
   const numberStatus = (number) => {
     if (!availableNums.includes(number)) {
@@ -73,7 +67,7 @@ const StarsMatch = (props) => {
         <div className={classes.stars}>
           {
             gameStatus !== 'active' ? (
-              <PlayAgain handleClick={resetGame} gameStatus={gameStatus} />
+              <PlayAgain handleClick={startNewGame} gameStatus={gameStatus} />
             ) : (
               <StarsDisplay count={stars} />
             )
@@ -98,4 +92,4 @@ const StarsMatch = (props) => {
 };
 
 
-export { StarsMatch };
+export { Game };
