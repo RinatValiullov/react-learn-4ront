@@ -1,11 +1,15 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import { GlobalStyles } from "./components/GlobalStyles";
+import { Navigation } from "./components/Navigation";
 
 function App() {
   return (
     <>
-      <GlobalStyles />
-      <div className="App">Starting point...</div>
+      <BrowserRouter>
+        <GlobalStyles />
+        <Navigation />
+      </BrowserRouter>
     </>
   );
 }
