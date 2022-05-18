@@ -1,9 +1,12 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import { GlobalStyles } from "./components/GlobalStyles";
 
 function App() {
   return (
-    <div className="App">Starting point...</div>
+    <>
+      <GlobalStyles />
+      <div className="App">Starting point...</div>
+    </>
   );
 }
 
