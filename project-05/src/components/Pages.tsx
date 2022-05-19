@@ -23,7 +23,7 @@ function Pages() {
               <Route
                 key={index}
                 path={page.path}
-                element={<Page page={page} />}
+                element={<Page presetPage={appContext.preset} page={page} />}
               />
             );
           })}

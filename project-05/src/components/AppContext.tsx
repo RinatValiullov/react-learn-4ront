@@ -16,7 +16,7 @@ interface Props {
 }
 
 function AppContextProvider({ children }: Props) {
-  const [preset, setPreset] = useState("roomToBottom");
+  const [preset, setPreset] = useState("fadeFromLeft");
   const [enterAnimation, setEnterAnimation] = useState("");
   const [exitAnimation, setExitAnimation] = useState("");
 
