@@ -6,12 +6,14 @@ const Container = styled.section`
   align-items: center;
   background-color: ${({ color }) => color};
   display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 100%;
 `;
 
 const Title = styled.h1`
   font-size: 3rem;
+  margin: 0 0 30px 0;
 `;
 
 const SubTitle = styled.h3`
