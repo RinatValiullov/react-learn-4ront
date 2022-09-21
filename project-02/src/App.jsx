@@ -8,7 +8,7 @@ import { AuthContext } from "./context/index";
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [isLoading, setIsloading] = useState(true);
-
+  
   useEffect(() => {
     if (localStorage.getItem("auth")) {
       setIsAuth(true);

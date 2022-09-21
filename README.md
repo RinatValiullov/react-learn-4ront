@@ -11,3 +11,5 @@
 - [The star match game](project-04)
 
 - [App with animated page transitions](project-05)
+
+- [Filterable table](project-06)
